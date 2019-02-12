@@ -1,2 +1,3 @@
 #/usr/bin/env sh
-docker run --name postgres -d postgres
+docker rm $(docker ps -aq --filter name=postgres)
+docker-compose up --detach postgres

@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: postgres
+    restart: always
+    build:
+      context: .
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=funbox
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/home/data
