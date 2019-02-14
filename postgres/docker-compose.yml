@@ -2,6 +2,7 @@ version: '3'
 
 services:
   postgres:
+    image: postgres:latest
     container_name: postgres
     restart: always
     build:
@@ -10,8 +11,17 @@ services:
       - "5432"
     ports:
       - "5432:5432"
+    command:
+      - /bin/sh
+      - -c
+      - |
+          apt-get update
+          apt-get upgrade -y
+          apt-get clean
+          rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
     environment:
-      - POSTGRES_DB=funbox
+      - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - PGDATA=/home/data
